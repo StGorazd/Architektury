@@ -10,6 +10,7 @@
         <class>bednarhalaj.model.hierarchy.Team</class>
         <class>bednarhalaj.model.hierarchy.Employee</class>
         <class>bednarhalaj.model.hierarchy.HierarchyEntity</class>
+        <class>bednarhalaj.model.requests.job.JobRequest</class>
 
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
 
