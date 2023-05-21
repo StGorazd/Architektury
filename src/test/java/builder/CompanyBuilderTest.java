@@ -1,7 +1,6 @@
 package builder;
 
 import bednarhalaj.model.hierarchy.Company;
-import bednarhalaj.model.hierarchy.Department;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
