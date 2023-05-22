@@ -2,6 +2,7 @@ package bednarhalaj;
 
 
 import bednarhalaj.crud.impl.*;
+import bednarhalaj.model.EntityManagerHolder;
 import bednarhalaj.model.hierarchy.Company;
 import bednarhalaj.model.hierarchy.Department;
 import jakarta.persistence.EntityManager;
@@ -10,8 +11,7 @@ import jakarta.persistence.Persistence;
 
 public class Main {
     public static void main(String[] args) {
-        try (EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("bednarhalaj.jpa")) {
-            EntityManager entityManager = entityManagerFactory.createEntityManager();
+        try (EntityManager entityManager = EntityManagerHolder.getEntityManager()) {
             CompanyRepository companyRepository = new CompanyRepository(entityManager);
             DepartmentRepository departmentRepository = new DepartmentRepository(entityManager);
             TeamRepository teamRepository = new TeamRepository(entityManager);
