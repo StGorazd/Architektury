@@ -1,6 +1,7 @@
 package bednarhalaj.model;
 
 import bednarhalaj.model.hierarchy.Employee;
+import bednarhalaj.visitor.crud.PromptVisitor;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -12,11 +13,9 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor(force = true)
-@EqualsAndHashCode
-public class Position {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+@EqualsAndHashCode(callSuper = true)
+public class Position extends DBEntity {
+
     @Column(name = "name")
     private String name;
     @Column(name = "base_salary")
@@ -33,19 +32,29 @@ public class Position {
         this.baseSalary = builder.baseSalary;
     }
 
+    @Override
+    public String toString() {
+        return "Name = " + name + ", Base Salary = " + baseSalary.toString();
+    }
+
+    public void accept(PromptVisitor visitor) {
+        visitor.visit(this);
+    }
+
     public static class Builder {
         private final String name;
         private BigDecimal baseSalary;
+
         public Builder(String name) {
             this.name = name;
         }
 
-        public Builder baseSalary(BigDecimal baseSalary){
+        public Builder baseSalary(BigDecimal baseSalary) {
             this.baseSalary = baseSalary;
             return this;
         }
 
-        public Position build(){
+        public Position build() {
             return new Position(this);
         }
     }

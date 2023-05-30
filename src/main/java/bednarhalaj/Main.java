@@ -1,41 +1,15 @@
 package bednarhalaj;
 
 
-import bednarhalaj.crud.impl.*;
-import bednarhalaj.model.EntityManagerHolder;
-import bednarhalaj.model.hierarchy.Company;
-import bednarhalaj.model.hierarchy.Department;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.Persistence;
+import bednarhalaj.output.OutputMediator;
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Main {
     public static void main(String[] args) {
-        try (EntityManager entityManager = EntityManagerHolder.getEntityManager()) {
-            CompanyRepository companyRepository = new CompanyRepository(entityManager);
-            DepartmentRepository departmentRepository = new DepartmentRepository(entityManager);
-            TeamRepository teamRepository = new TeamRepository(entityManager);
-            EmployeeRepository employeeRepository = new EmployeeRepository(entityManager);
-            PositionRepository positionRepository = new PositionRepository(entityManager);
-
-            Company company = new Company();
-            company.setName("Google");
-            companyRepository.create(company);
-            Company retrievedCompany = companyRepository.read(Company.class, company.getId());
-            assert retrievedCompany.equals(company);
-
-            Department department = new Department();
-            department.setCompany(company);
-            company.addSubordinate(department);
-            department.setName("HR");
-            departmentRepository.create(department);
-            companyRepository.update(company);
-
-            retrievedCompany = companyRepository.read(Company.class, company.getId());
-            assert retrievedCompany.getSubordinates().size() == 1;
-
-
-        }
-
+        Logger.getLogger("org.hibernate").setLevel(Level.SEVERE);
+        OutputMediator mediator = new OutputMediator();
+        mediator.start();
     }
 }

@@ -7,13 +7,14 @@ import jakarta.persistence.Persistence;
 public class EntityManagerHolder {
     private static EntityManager entityManager;
 
-    private EntityManagerHolder(){}
+    private EntityManagerHolder() {
+    }
 
-    public static EntityManager getEntityManager(){
-        if (entityManager == null){
-            try(EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("bednarhalaj.jpa")){
-                entityManager = entityManagerFactory.createEntityManager();
-            }
+    public static EntityManager getEntityManager() {
+        if (entityManager == null) {
+            EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("bednarhalaj.jpa");
+            entityManager = entityManagerFactory.createEntityManager();
+
         }
         return entityManager;
     }

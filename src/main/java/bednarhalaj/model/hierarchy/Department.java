@@ -1,5 +1,6 @@
 package bednarhalaj.model.hierarchy;
 
+import bednarhalaj.visitor.crud.PromptVisitor;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -8,12 +9,12 @@ import lombok.*;
 @Setter
 @NoArgsConstructor(force = true)
 @EqualsAndHashCode(callSuper = true)
+@ToString
 public class Department extends CompositeHierarchyEntity {
     @NonNull
     @Column(name = "name")
     private String name;
 
-    @NonNull
     @ManyToOne
     @JoinColumn(foreignKey = @ForeignKey(name = "company_id"))
     private Company company;
@@ -21,6 +22,15 @@ public class Department extends CompositeHierarchyEntity {
     private Department(Builder builder) {
         this.name = builder.name;
         this.company = builder.company;
+    }
+
+    public void accept(PromptVisitor visitor) {
+        visitor.visit(this);
+    }
+
+    @Override
+    public String toString() {
+        return "Name = " + name + ", Company = " + ((company != null) ? company.getName() : "NOT SET");
     }
 
     public static class Builder {
