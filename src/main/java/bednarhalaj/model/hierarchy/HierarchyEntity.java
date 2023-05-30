@@ -1,6 +1,7 @@
 package bednarhalaj.model.hierarchy;
 
 
+import bednarhalaj.model.DBEntity;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -10,12 +11,8 @@ import java.math.BigDecimal;
 @Entity
 @Getter
 @Setter
-@EqualsAndHashCode
-public abstract class HierarchyEntity implements Serializable {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private int id;
-
+@EqualsAndHashCode(callSuper = true)
+public abstract class HierarchyEntity extends DBEntity implements Serializable {
     public abstract BigDecimal getCost();
+
 }

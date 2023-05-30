@@ -2,6 +2,7 @@ package bednarhalaj.model.hierarchy;
 
 
 import bednarhalaj.model.Position;
+import bednarhalaj.visitor.crud.PromptVisitor;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -42,19 +43,24 @@ public class Employee extends HierarchyEntity {
     @Column(name = "employee_since")
     private LocalDate employeeSince;
 
-    @NonNull
     @ManyToOne
     @JoinColumn(foreignKey = @ForeignKey(name = "team_id"))
     private Team team;
 
-    @NonNull
     @ManyToOne
     @JoinColumn(foreignKey = @ForeignKey(name = "position_id"))
     private Position position;
 
     @Override
     public BigDecimal getCost() {
-        return position.getBaseSalary().add(salaryBonus);
+        if (position != null) {
+            return position.getBaseSalary().add(salaryBonus);
+        }
+        return salaryBonus;
+    }
+
+    public void accept(PromptVisitor visitor) {
+        visitor.visit(this);
     }
 
     private Employee(Builder builder) {
@@ -67,6 +73,20 @@ public class Employee extends HierarchyEntity {
         this.employeeSince = builder.employeeSince;
         this.team = builder.team;
         this.position = builder.position;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee:\t" +
+                "First name = '" + firstname + '\'' +
+                ", Surname = '" + surname + '\'' +
+                ", Email = '" + email + '\'' +
+                ", Address = '" + address + '\'' +
+                ", Birthdate = " + birthdate +
+                ", Salary Bonus = " + salaryBonus +
+                ", Employee Since = " + employeeSince +
+                "\n\t\t\t\tTeam = " + ((team == null) ? "NOT SET" : team.getName()) +
+                ", Position = " + ((position == null) ? "NOT SET" : position.getName());
     }
 
     public static class Builder {
