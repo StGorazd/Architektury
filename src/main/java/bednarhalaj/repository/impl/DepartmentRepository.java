@@ -9,7 +9,7 @@ import java.util.List;
 
 public class DepartmentRepository implements CrudRepository<Department> {
 
-    private EntityManager entityManager;
+    private final EntityManager entityManager;
 
     public DepartmentRepository(EntityManager entityManager) {
         this.entityManager = entityManager;

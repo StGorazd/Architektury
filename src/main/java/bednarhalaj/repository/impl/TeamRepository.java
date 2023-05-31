@@ -10,7 +10,7 @@ import java.util.List;
 
 public class TeamRepository implements CrudRepository<Team> {
 
-    private EntityManager entityManager;
+    private final EntityManager entityManager;
 
     public TeamRepository(EntityManager entityManager) {
         this.entityManager = entityManager;

@@ -1,21 +1,20 @@
 package bednarhalaj.repository.impl;
 
+import bednarhalaj.model.users.db.DBUser;
 import bednarhalaj.repository.CrudRepository;
-import bednarhalaj.model.Position;
 import jakarta.persistence.EntityManager;
 
 import java.util.List;
 
-public class PositionRepository implements CrudRepository<Position> {
-
+public class DBUserRepository implements CrudRepository<DBUser> {
     private final EntityManager entityManager;
 
-    public PositionRepository(EntityManager entityManager) {
+    public DBUserRepository(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
 
     @Override
-    public void create(Position entity) {
+    public void create(DBUser entity) {
         try {
             entityManager.getTransaction().begin();
             entityManager.persist(entity);
@@ -29,31 +28,31 @@ public class PositionRepository implements CrudRepository<Position> {
     }
 
     @Override
-    public Position read(Class<Position> entityClass, Integer id) {
+    public DBUser read(Class<DBUser> entityClass, Integer id) {
         entityManager.getTransaction().begin();
-        Position position = entityManager.find(entityClass, id);
+        DBUser user = entityManager.find(entityClass, id);
         entityManager.getTransaction().commit();
-        return position;
+        return user;
     }
 
     @Override
-    public List<Position> readAll() {
+    public List<DBUser> readAll() {
         entityManager.getTransaction().begin();
-        List<Position> positions = entityManager.createQuery("SELECT p FROM Position p", Position.class).getResultList();
+        List<DBUser> users = entityManager.createQuery("SELECT u FROM DBUser u", DBUser.class).getResultList();
         entityManager.getTransaction().commit();
-        return positions;
+        return users;
     }
 
     @Override
-    public Position update(Position entity) {
+    public DBUser update(DBUser entity) {
         entityManager.getTransaction().begin();
-        Position position = entityManager.merge(entity);
+        DBUser user = entityManager.merge(entity);
         entityManager.getTransaction().commit();
-        return position;
+        return user;
     }
 
     @Override
-    public void delete(Position entity) {
+    public void delete(DBUser entity) {
         entityManager.getTransaction().begin();
         entityManager.remove(entity);
         entityManager.getTransaction().commit();
