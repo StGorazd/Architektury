@@ -30,7 +30,7 @@ public class ChooseEntityToUpdateState extends State{
 
     @Override
     public Component operation(MenuItem<?> menuItem) {
-        State nextState = new UpdateState();
+        State nextState = UpdateState.getInstance();
         Component componentToReturn = getFirstComponent();
 
         if (menuItem == EntityMenuItem.EMPLOYEE) {

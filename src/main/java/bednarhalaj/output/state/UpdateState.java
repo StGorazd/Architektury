@@ -14,6 +14,20 @@ import bednarhalaj.output.items.MenuItem;
 
 public class UpdateState extends State {
 
+    private static UpdateState updateStateInstance = null;
+
+    private UpdateState(){
+
+    }
+
+    public static UpdateState getInstance(){
+        if (updateStateInstance == null){
+            updateStateInstance = new UpdateState();
+        }
+
+        return updateStateInstance;
+    }
+
     @Override
     public Component operation(MenuItem<?> menuItem) {
         try {
