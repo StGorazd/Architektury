@@ -14,6 +14,20 @@ import bednarhalaj.output.items.MenuItem;
 
 public class UpdateState extends State {
 
+    private static UpdateState updateStateInstance = null;
+
+    private UpdateState(){
+
+    }
+
+    public static UpdateState getInstance(){
+        if (updateStateInstance == null){
+            updateStateInstance = new UpdateState();
+        }
+
+        return updateStateInstance;
+    }
+
     @Override
     public Component operation(MenuItem<?> menuItem) {
         try {
@@ -40,7 +54,7 @@ public class UpdateState extends State {
         } catch (Exception e) {
             System.out.println("Something went wrong when updating an entry");
         }
-        State nextState = new ChooseActionState();
+        State nextState = ChooseActionState.getInstance();
         Component componentToReturn = getFirstComponent();
         nextState.setOutputMediator(outputMediator);
         outputMediator.setActualState(nextState);

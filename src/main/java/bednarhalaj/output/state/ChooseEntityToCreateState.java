@@ -12,9 +12,22 @@ import bednarhalaj.output.items.MenuItem;
 import bednarhalaj.output.items.OperationMenuItem;
 
 public class ChooseEntityToCreateState extends State {
+    private static ChooseEntityToCreateState chooseEntityToCreateStateInstance = null;
+
+    private ChooseEntityToCreateState(){
+
+    }
+
+    public static ChooseEntityToCreateState getInstance(){
+        if (chooseEntityToCreateStateInstance == null){
+            chooseEntityToCreateStateInstance = new ChooseEntityToCreateState();
+        }
+
+        return chooseEntityToCreateStateInstance;
+    }
     @Override
     public Component operation(MenuItem<?> menuItem) {
-        State nextState = new ChooseActionState();
+        State nextState = ChooseActionState.getInstance();
         Component componentToReturn = getFirstComponent();
         try {
             if (menuItem == EntityMenuItem.EMPLOYEE) {

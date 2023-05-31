@@ -21,7 +21,7 @@ public class OutputMediator {
     private State actualState;
 
     public OutputMediator() {
-        actualState = new ChooseActionState();
+        actualState = ChooseActionState.getInstance();
         actualState.setOutputMediator(this);
     }
 

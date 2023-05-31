@@ -15,9 +15,22 @@ import bednarhalaj.output.strategy.ListHierarchyEntityOutputStrategy;
 import java.util.List;
 
 public class ChooseEntityToUpdateState extends State{
+    private static ChooseEntityToUpdateState chooseEntityToUpdateStateInstance = null;
+
+    private ChooseEntityToUpdateState(){
+
+    }
+
+    public static ChooseEntityToUpdateState getInstance(){
+        if (chooseEntityToUpdateStateInstance == null){
+            chooseEntityToUpdateStateInstance = new ChooseEntityToUpdateState();
+        }
+        return chooseEntityToUpdateStateInstance;
+    }
+
     @Override
     public Component operation(MenuItem<?> menuItem) {
-        State nextState = new UpdateState();
+        State nextState = UpdateState.getInstance();
         Component componentToReturn = getFirstComponent();
 
         if (menuItem == EntityMenuItem.EMPLOYEE) {
@@ -41,7 +54,7 @@ public class ChooseEntityToUpdateState extends State{
             List<Position> positions = readCommand.execute();
             componentToReturn = new ListDBEntityOutputStrategy(positions, true);
         }else{
-            nextState = new ChooseActionState();
+            nextState = ChooseActionState.getInstance();
         }
 
         nextState.setOutputMediator(outputMediator);

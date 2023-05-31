@@ -15,9 +15,24 @@ import bednarhalaj.output.strategy.ListHierarchyEntityOutputStrategy;
 import java.util.List;
 
 public class ChooseEntityToDeleteState extends State {
+
+    private static ChooseEntityToDeleteState chooseEntityToDeleteStateInstance = null;
+
+    private ChooseEntityToDeleteState(){
+
+    }
+
+    public static ChooseEntityToDeleteState getInstance(){
+        if ( chooseEntityToDeleteStateInstance == null ){
+            chooseEntityToDeleteStateInstance = new ChooseEntityToDeleteState();
+        }
+
+        return chooseEntityToDeleteStateInstance;
+    }
+
     @Override
     public Component operation(MenuItem<?> menuItem) {
-        State nextState = new DeleteState();
+        State nextState = DeleteState.getInstance();
         Component componentToReturn = getFirstComponent();
 
         if (menuItem == EntityMenuItem.EMPLOYEE) {
@@ -41,7 +56,7 @@ public class ChooseEntityToDeleteState extends State {
             List<Position> positions = readCommand.execute();
             componentToReturn = new ListDBEntityOutputStrategy(positions, true);
         }else{
-            nextState = new ChooseActionState();
+            nextState = ChooseActionState.getInstance();
         }
 
         nextState.setOutputMediator(outputMediator);
