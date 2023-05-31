@@ -10,9 +10,24 @@ import bednarhalaj.output.strategy.LineOutputStrategy;
 import java.math.BigDecimal;
 
 public class ComputeCostState extends State {
+
+    private static ComputeCostState computeCostStateInstance = null;
+
+    private ComputeCostState(){
+
+    }
+
+    public static ComputeCostState getInstance(){
+        if (computeCostStateInstance == null){
+            computeCostStateInstance = new ComputeCostState();
+        }
+
+        return computeCostStateInstance;
+    }
+
     @Override
     public Component operation(MenuItem<?> menuItem) {
-        State nextState = new ChooseActionState();
+        State nextState = ChooseActionState.getInstance();
         Component componentToReturn = getFirstComponent();
 
         if (menuItem == HierarchyEntityMenuItem.ITEM) {

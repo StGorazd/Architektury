@@ -15,9 +15,23 @@ import bednarhalaj.output.items.MenuItem;
 
 public class DeleteState extends State {
 
+    private static DeleteState deleteStateInstance = null;
+
+    private DeleteState(){
+
+    }
+
+    public static DeleteState getInstance(){
+        if (deleteStateInstance == null){
+            deleteStateInstance = new DeleteState();
+        }
+
+        return deleteStateInstance;
+    }
+
     @Override
     public Component operation(MenuItem<?> menuItem) {
-        State nextState = new ChooseActionState();
+        State nextState = ChooseActionState.getInstance();
         Component componentToReturn = getFirstComponent();
         try {
             if (menuItem == DBEntityMenuItem.ITEM) {

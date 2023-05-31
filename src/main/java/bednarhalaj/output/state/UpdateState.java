@@ -40,7 +40,7 @@ public class UpdateState extends State {
         } catch (Exception e) {
             System.out.println("Something went wrong when updating an entry");
         }
-        State nextState = new ChooseActionState();
+        State nextState = ChooseActionState.getInstance();
         Component componentToReturn = getFirstComponent();
         nextState.setOutputMediator(outputMediator);
         outputMediator.setActualState(nextState);

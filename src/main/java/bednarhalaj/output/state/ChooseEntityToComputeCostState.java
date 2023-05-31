@@ -13,9 +13,23 @@ import bednarhalaj.output.strategy.ListHierarchyEntityOutputStrategy;
 import java.util.List;
 
 public class ChooseEntityToComputeCostState extends State {
+
+    private static ChooseEntityToComputeCostState chooseEntityToComputeCostStateInstance = null;
+
+    private ChooseEntityToComputeCostState () {
+
+    }
+
+    public static ChooseEntityToComputeCostState getInstance(){
+        if (chooseEntityToComputeCostStateInstance == null){
+            chooseEntityToComputeCostStateInstance = new ChooseEntityToComputeCostState();
+        }
+        return chooseEntityToComputeCostStateInstance;
+    }
+
     @Override
     public Component operation(MenuItem<?> menuItem) {
-        State nextState = new ComputeCostState();
+        State nextState = ComputeCostState.getInstance();
         Component componentToReturn = getFirstComponent();
 
         if (menuItem == EntityMenuItem.EMPLOYEE) {
@@ -35,7 +49,7 @@ public class ChooseEntityToComputeCostState extends State {
             List<Company> companies = readCommand.execute();
             componentToReturn = new ListHierarchyEntityOutputStrategy(companies, true);
         } else {
-            nextState = new ChooseActionState();
+            nextState = ChooseActionState.getInstance();
         }
 
         nextState.setOutputMediator(outputMediator);

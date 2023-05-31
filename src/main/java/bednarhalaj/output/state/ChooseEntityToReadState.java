@@ -15,9 +15,23 @@ import bednarhalaj.output.strategy.ListHierarchyEntityOutputStrategy;
 import java.util.List;
 
 public class ChooseEntityToReadState extends State{
+
+    private static ChooseEntityToReadState chooseEntityToReadStateInstance = null;
+
+    private ChooseEntityToReadState(){
+
+    }
+
+    public static ChooseEntityToReadState getInstance(){
+        if (chooseEntityToReadStateInstance == null){
+            chooseEntityToReadStateInstance = new ChooseEntityToReadState();
+        }
+        return chooseEntityToReadStateInstance;
+    }
+
     @Override
     public Component operation(MenuItem<?> menuItem) {
-        State nextState = new ChooseActionState();
+        State nextState = ChooseActionState.getInstance();
         Component componentToReturn = getFirstComponent();
 
         if (menuItem == EntityMenuItem.EMPLOYEE) {
