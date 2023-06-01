@@ -21,6 +21,9 @@ public class ListHierarchyEntityOutputStrategy extends OutputStrategy {
 
     @Override
     public void execute() {
+        if(entityList.isEmpty()){
+            System.out.println("No entries!\n");
+        }
         for (int i = 0; i < entityList.size(); i++) {
             HierarchyEntity hierarchyEntity = entityList.get(i);
             System.out.println((i + 1) + ". " + hierarchyEntity.toString());

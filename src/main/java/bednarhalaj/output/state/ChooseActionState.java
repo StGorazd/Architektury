@@ -1,20 +1,15 @@
 package bednarhalaj.output.state;
 
-import bednarhalaj.output.Component;
 import bednarhalaj.output.items.EntityMenuItem;
 import bednarhalaj.output.items.MenuItem;
 import bednarhalaj.output.items.OperationMenuItem;
 import bednarhalaj.output.strategy.ListItemsOutputStrategy;
+import bednarhalaj.output.strategy.OutputStrategy;
 
 
 public class ChooseActionState extends State {
 
     private static ChooseActionState chooseActionStateInstance = null;
-
-    private ChooseActionState(){
-
-    }
-
     public static ChooseActionState getInstance(){
         if (chooseActionStateInstance == null){
             chooseActionStateInstance = new ChooseActionState();
@@ -23,34 +18,34 @@ public class ChooseActionState extends State {
     }
 
     @Override
-    public Component operation(MenuItem<?> menuItem) {
+    public OutputStrategy operation(MenuItem<?> menuItem) {
         State nextState = this;
-        Component componentToReturn = getFirstComponent();
+        OutputStrategy outputStrategyToReturn = getFirstOutputStrategy();
         if (menuItem == OperationMenuItem.CREATE) {
             nextState = ChooseEntityToCreateState.getInstance();
-            componentToReturn = getNextComponentWithAllDBEntities();
+            outputStrategyToReturn = getNextOutputStrategyWithAllDBEntities();
         } else if (menuItem == OperationMenuItem.UPDATE) {
             nextState = ChooseEntityToUpdateState.getInstance();
-            componentToReturn = getNextComponentWithAllDBEntities();
+            outputStrategyToReturn = getNextOutputStrategyWithAllDBEntities();
         } else if (menuItem == OperationMenuItem.DELETE) {
             nextState = ChooseEntityToDeleteState.getInstance();
-            componentToReturn = getNextComponentWithAllDBEntities();
+            outputStrategyToReturn = getNextOutputStrategyWithAllDBEntities();
         } else if (menuItem == OperationMenuItem.READ) {
             nextState = ChooseEntityToReadState.getInstance();
-            componentToReturn = getNextComponentWithAllDBEntities();
+            outputStrategyToReturn = getNextOutputStrategyWithAllDBEntities();
         } else if (menuItem == OperationMenuItem.COMPUTE_COST) {
             nextState = ChooseEntityToComputeCostState.getInstance();
-            componentToReturn = getNextComponentWithHierarchyEntities();
+            outputStrategyToReturn = getNextOutputStrategyWithHierarchyEntities();
         } else if (menuItem == OperationMenuItem.EXIT) {
             System.exit(0);
         }
 
         nextState.setOutputMediator(outputMediator);
         outputMediator.setActualState(nextState);
-        return componentToReturn;
+        return outputStrategyToReturn;
     }
 
-    private Component getNextComponentWithAllDBEntities() {
+    private OutputStrategy getNextOutputStrategyWithAllDBEntities() {
         return new ListItemsOutputStrategy(EntityMenuItem.EMPLOYEE,
                 EntityMenuItem.TEAM,
                 EntityMenuItem.DEPARTMENT,
@@ -59,7 +54,7 @@ public class ChooseActionState extends State {
                 OperationMenuItem.BACK);
     }
 
-    private Component getNextComponentWithHierarchyEntities() {
+    private OutputStrategy getNextOutputStrategyWithHierarchyEntities() {
         return new ListItemsOutputStrategy(EntityMenuItem.EMPLOYEE,
                 EntityMenuItem.TEAM,
                 EntityMenuItem.DEPARTMENT,

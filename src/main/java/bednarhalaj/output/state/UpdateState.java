@@ -8,20 +8,20 @@ import bednarhalaj.model.hierarchy.Company;
 import bednarhalaj.model.hierarchy.Department;
 import bednarhalaj.model.hierarchy.Employee;
 import bednarhalaj.model.hierarchy.Team;
-import bednarhalaj.output.Component;
 import bednarhalaj.output.items.DBEntityMenuItem;
 import bednarhalaj.output.items.MenuItem;
+import bednarhalaj.output.strategy.OutputStrategy;
 
 public class UpdateState extends State {
 
     private static UpdateState updateStateInstance = null;
 
-    private UpdateState(){
+    private UpdateState() {
 
     }
 
-    public static UpdateState getInstance(){
-        if (updateStateInstance == null){
+    public static UpdateState getInstance() {
+        if (updateStateInstance == null) {
             updateStateInstance = new UpdateState();
         }
 
@@ -29,7 +29,9 @@ public class UpdateState extends State {
     }
 
     @Override
-    public Component operation(MenuItem<?> menuItem) {
+    public OutputStrategy operation(MenuItem<?> menuItem) {
+        State nextState = ChooseActionState.getInstance();
+        OutputStrategy outputStrategyToReturn = getFirstOutputStrategy();
         try {
             if (menuItem == DBEntityMenuItem.ITEM) {
                 DBEntityMenuItem localMenuItem = (DBEntityMenuItem) menuItem;
@@ -54,10 +56,8 @@ public class UpdateState extends State {
         } catch (Exception e) {
             System.out.println("Something went wrong when updating an entry");
         }
-        State nextState = ChooseActionState.getInstance();
-        Component componentToReturn = getFirstComponent();
         nextState.setOutputMediator(outputMediator);
         outputMediator.setActualState(nextState);
-        return componentToReturn;
+        return outputStrategyToReturn;
     }
 }

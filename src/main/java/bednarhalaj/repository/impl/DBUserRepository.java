@@ -1,12 +1,12 @@
 package bednarhalaj.repository.impl;
 
 import bednarhalaj.model.users.db.DBUser;
-import bednarhalaj.repository.CrudRepository;
+import bednarhalaj.repository.CRUDRepository;
 import jakarta.persistence.EntityManager;
 
 import java.util.List;
 
-public class DBUserRepository implements CrudRepository<DBUser> {
+public class DBUserRepository implements CRUDRepository<DBUser> {
     private final EntityManager entityManager;
 
     public DBUserRepository(EntityManager entityManager) {
@@ -20,6 +20,7 @@ public class DBUserRepository implements CrudRepository<DBUser> {
             entityManager.persist(entity);
             entityManager.getTransaction().commit();
         } catch (Exception e) {
+            e.printStackTrace();
             try {
                 entityManager.getTransaction().rollback();
             } catch (Exception ignored) {

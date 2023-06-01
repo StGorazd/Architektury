@@ -31,12 +31,14 @@ public class DBUser extends DBEntity implements Serializable {
 
     @Override
     public String toString() {
-        return "Name = " + name + ", Role = " + role.toString();
+        return name;
     }
+
     public static class Builder {
         private final String name;
         private String password;
         private Role role;
+
         public Builder(String name) {
             this.name = name;
         }
@@ -50,6 +52,7 @@ public class DBUser extends DBEntity implements Serializable {
             this.role = role;
             return this;
         }
+
         public DBUser build() {
             return new DBUser(this);
         }

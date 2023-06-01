@@ -14,8 +14,8 @@ public abstract class UserDecorator implements User {
         return user.canRead();
     }
 
-    public boolean canWrite() {
-        return user.canWrite();
+    public boolean canCreate() {
+        return user.canCreate();
     }
 
     public boolean canUpdate() {

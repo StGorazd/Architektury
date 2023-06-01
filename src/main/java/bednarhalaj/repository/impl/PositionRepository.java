@@ -1,12 +1,12 @@
 package bednarhalaj.repository.impl;
 
-import bednarhalaj.repository.CrudRepository;
+import bednarhalaj.repository.CRUDRepository;
 import bednarhalaj.model.Position;
 import jakarta.persistence.EntityManager;
 
 import java.util.List;
 
-public class PositionRepository implements CrudRepository<Position> {
+public class PositionRepository implements CRUDRepository<Position> {
 
     private final EntityManager entityManager;
 

@@ -7,7 +7,7 @@ public class DatabaseUser implements User {
     }
 
     @Override
-    public boolean canWrite() {
+    public boolean canCreate() {
         return false;
     }
 

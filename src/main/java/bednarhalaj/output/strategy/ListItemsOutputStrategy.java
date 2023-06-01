@@ -17,6 +17,9 @@ public class ListItemsOutputStrategy extends OutputStrategy {
 
     @Override
     public void execute() {
+        if(items.isEmpty()){
+            System.out.println("No entries!\n");
+        }
         for (int i = 0; i < items.size(); i++) {
             System.out.println((i + 1) + ". " + items.get(i).getLabel());
         }

@@ -1,12 +1,12 @@
 package bednarhalaj.repository.impl;
 
-import bednarhalaj.repository.CrudRepository;
+import bednarhalaj.repository.CRUDRepository;
 import bednarhalaj.model.hierarchy.Company;
 import jakarta.persistence.EntityManager;
 
 import java.util.List;
 
-public class CompanyRepository implements CrudRepository<Company> {
+public class CompanyRepository implements CRUDRepository<Company> {
 
     private final EntityManager entityManager;
 
