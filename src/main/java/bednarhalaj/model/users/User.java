@@ -3,7 +3,7 @@ package bednarhalaj.model.users;
 public interface User {
     boolean canRead();
 
-    boolean canWrite();
+    boolean canCreate();
 
     boolean canUpdate();
 

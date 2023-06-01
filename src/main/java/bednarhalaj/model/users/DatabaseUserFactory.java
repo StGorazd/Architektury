@@ -10,11 +10,8 @@ public class DatabaseUserFactory {
 
     public User getDatabaseUser(Role role) {
         User databaseUser = new DatabaseUser();
-        if (role == Role.TESTER) {
-            return databaseUser;
-        }
         databaseUser = new CanReadUserDecorator(databaseUser);
-        if (role == Role.VIEWER) {
+        if (role == Role.READER) {
             return databaseUser;
         }
         databaseUser = new CanWriteUserDecorator(databaseUser);

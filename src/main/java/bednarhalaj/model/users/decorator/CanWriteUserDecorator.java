@@ -9,7 +9,7 @@ public class CanWriteUserDecorator extends UserDecorator {
     }
 
     @Override
-    public boolean canWrite() {
+    public boolean canCreate() {
         return true;
     }
 }

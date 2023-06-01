@@ -1,8 +1,10 @@
 package bednarhalaj.command.crud.delete;
 
 import bednarhalaj.model.EntityManagerHolder;
+import bednarhalaj.model.hierarchy.Department;
 import bednarhalaj.model.hierarchy.Employee;
 import bednarhalaj.repository.impl.EmployeeRepository;
+import bednarhalaj.repository.impl.proxy.SecuredRepository;
 import jakarta.persistence.EntityManager;
 
 public class DeleteEmployeeCommand extends DeleteCommand<Employee> {
@@ -14,7 +16,12 @@ public class DeleteEmployeeCommand extends DeleteCommand<Employee> {
     public Void execute() {
         EntityManager entityManager = EntityManagerHolder.getEntityManager();
         EmployeeRepository employeeRepository = new EmployeeRepository(entityManager);
-        employeeRepository.delete(entity);
+        SecuredRepository<Employee> repository = new SecuredRepository<>(employeeRepository);
+        try {
+            repository.delete(entity);
+        } catch (IllegalAccessException e) {
+            System.out.println("\nAccess denied!\n");
+        }
         return null;
     }
 }

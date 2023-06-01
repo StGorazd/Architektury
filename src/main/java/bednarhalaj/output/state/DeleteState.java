@@ -2,16 +2,15 @@ package bednarhalaj.output.state;
 
 import bednarhalaj.command.Command;
 import bednarhalaj.command.crud.delete.*;
-import bednarhalaj.command.crud.update.*;
 import bednarhalaj.model.DBEntity;
 import bednarhalaj.model.Position;
 import bednarhalaj.model.hierarchy.Company;
 import bednarhalaj.model.hierarchy.Department;
 import bednarhalaj.model.hierarchy.Employee;
 import bednarhalaj.model.hierarchy.Team;
-import bednarhalaj.output.Component;
 import bednarhalaj.output.items.DBEntityMenuItem;
 import bednarhalaj.output.items.MenuItem;
+import bednarhalaj.output.strategy.OutputStrategy;
 
 public class DeleteState extends State {
 
@@ -30,9 +29,9 @@ public class DeleteState extends State {
     }
 
     @Override
-    public Component operation(MenuItem<?> menuItem) {
+    public OutputStrategy operation(MenuItem<?> menuItem) {
         State nextState = ChooseActionState.getInstance();
-        Component componentToReturn = getFirstComponent();
+        OutputStrategy outputStrategyToReturn = getFirstOutputStrategy();
         try {
             if (menuItem == DBEntityMenuItem.ITEM) {
                 DBEntityMenuItem localMenuItem = (DBEntityMenuItem) menuItem;
@@ -59,6 +58,6 @@ public class DeleteState extends State {
         }
         nextState.setOutputMediator(outputMediator);
         outputMediator.setActualState(nextState);
-        return componentToReturn;
+        return outputStrategyToReturn;
     }
 }

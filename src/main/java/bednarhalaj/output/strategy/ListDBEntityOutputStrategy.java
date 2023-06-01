@@ -11,15 +11,22 @@ public class ListDBEntityOutputStrategy extends OutputStrategy {
     private final String ERROR = "Something went wrong, try again!\n";
     List<? extends DBEntity> entityList;
 
+    private final String prompt;
+
     private final boolean choose;
 
-    public ListDBEntityOutputStrategy(List<? extends DBEntity> entityList, boolean choose) {
+    public ListDBEntityOutputStrategy(List<? extends DBEntity> entityList, boolean choose, String prompt) {
         this.entityList = entityList;
         this.choose = choose;
+        this.prompt = prompt;
     }
 
     @Override
     public void execute() {
+        System.out.println(prompt);
+        if(entityList.isEmpty()){
+            System.out.println("No entries!\n");
+        }
         for (int i = 0; i < entityList.size(); i++) {
             DBEntity dbEntity = entityList.get(i);
             System.out.println((i + 1) + ". " + dbEntity.toString());

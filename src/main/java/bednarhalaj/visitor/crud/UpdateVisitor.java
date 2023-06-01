@@ -7,6 +7,7 @@ import bednarhalaj.model.hierarchy.Department;
 import bednarhalaj.model.hierarchy.Employee;
 import bednarhalaj.model.hierarchy.Team;
 import bednarhalaj.repository.impl.*;
+import bednarhalaj.repository.impl.proxy.SecuredRepository;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -205,7 +206,12 @@ public class UpdateVisitor extends PromptVisitor {
         }
 
         EmployeeRepository employeeRepository = new EmployeeRepository(entityManager);
-        employeeRepository.update(employee);
+        SecuredRepository<Employee> repository = new SecuredRepository<>(employeeRepository);
+        try {
+            repository.update(employee);
+        } catch (IllegalAccessException e) {
+            System.out.println("\nAccess denied!\n");
+        }
     }
 
     @Override
@@ -245,7 +251,12 @@ public class UpdateVisitor extends PromptVisitor {
         }
 
         CompanyRepository companyRepository = new CompanyRepository(entityManager);
-        companyRepository.update(company);
+        SecuredRepository<Company> repository = new SecuredRepository<>(companyRepository);
+        try {
+            repository.create(company);
+        } catch (IllegalAccessException e) {
+            System.out.println("\nAccess denied!\n");
+        }
     }
 
     @Override
@@ -324,7 +335,12 @@ public class UpdateVisitor extends PromptVisitor {
         }
 
         DepartmentRepository departmentRepository = new DepartmentRepository(entityManager);
-        departmentRepository.update(department);
+        SecuredRepository<Department> repository = new SecuredRepository<>(departmentRepository);
+        try {
+            repository.create(department);
+        } catch (IllegalAccessException e) {
+            System.out.println("\nAccess denied!\n");
+        }
     }
 
     @Override
@@ -400,7 +416,12 @@ public class UpdateVisitor extends PromptVisitor {
         }
 
         TeamRepository teamRepository = new TeamRepository(entityManager);
-        teamRepository.update(team);
+        SecuredRepository<Team> repository = new SecuredRepository<>(teamRepository);
+        try {
+            repository.create(team);
+        } catch (IllegalAccessException e) {
+            System.out.println("\nAccess denied!\n");
+        }
     }
 
     @Override
@@ -455,7 +476,12 @@ public class UpdateVisitor extends PromptVisitor {
         }
 
         PositionRepository positionRepository = new PositionRepository(entityManager);
-        positionRepository.update(position);
+        SecuredRepository<Position> repository = new SecuredRepository<>(positionRepository);
+        try {
+            repository.create(position);
+        } catch (IllegalAccessException e) {
+            System.out.println("\nAccess denied!\n");
+        }
     }
 
     private String getField(String name) {

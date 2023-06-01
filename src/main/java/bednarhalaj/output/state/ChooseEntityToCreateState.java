@@ -6,10 +6,9 @@ import bednarhalaj.model.hierarchy.Company;
 import bednarhalaj.model.hierarchy.Department;
 import bednarhalaj.model.hierarchy.Employee;
 import bednarhalaj.model.hierarchy.Team;
-import bednarhalaj.output.Component;
 import bednarhalaj.output.items.EntityMenuItem;
 import bednarhalaj.output.items.MenuItem;
-import bednarhalaj.output.items.OperationMenuItem;
+import bednarhalaj.output.strategy.OutputStrategy;
 
 public class ChooseEntityToCreateState extends State {
     private static ChooseEntityToCreateState chooseEntityToCreateStateInstance = null;
@@ -26,9 +25,9 @@ public class ChooseEntityToCreateState extends State {
         return chooseEntityToCreateStateInstance;
     }
     @Override
-    public Component operation(MenuItem<?> menuItem) {
+    public OutputStrategy operation(MenuItem<?> menuItem) {
         State nextState = ChooseActionState.getInstance();
-        Component componentToReturn = getFirstComponent();
+        OutputStrategy outputStrategyToReturn = getFirstOutputStrategy();
         try {
             if (menuItem == EntityMenuItem.EMPLOYEE) {
                 CreateCommand<Employee> createCommand = new CreateEmployeeCommand(new Employee());
@@ -53,6 +52,6 @@ public class ChooseEntityToCreateState extends State {
 
         nextState.setOutputMediator(outputMediator);
         outputMediator.setActualState(nextState);
-        return componentToReturn;
+        return outputStrategyToReturn;
     }
 }
