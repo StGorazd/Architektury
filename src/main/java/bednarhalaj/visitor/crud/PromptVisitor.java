@@ -10,7 +10,7 @@ import jakarta.persistence.EntityManager;
 
 public abstract class PromptVisitor {
 
-    protected final EntityManager entityManager = EntityManagerHolder.getEntityManager();
+    protected final EntityManager entityManager = EntityManagerHolder.getInstance();
     public abstract void visit(Employee employee);
 
     public abstract void visit(Company company);

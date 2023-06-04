@@ -10,7 +10,7 @@ public class EntityManagerHolder {
     private EntityManagerHolder() {
     }
 
-    public static EntityManager getEntityManager() {
+    public static EntityManager getInstance() {
         if (entityManager == null) {
             EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("bednarhalaj.jpa");
             entityManager = entityManagerFactory.createEntityManager();

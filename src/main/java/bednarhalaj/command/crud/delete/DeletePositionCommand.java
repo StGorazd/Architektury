@@ -2,7 +2,6 @@ package bednarhalaj.command.crud.delete;
 
 import bednarhalaj.model.EntityManagerHolder;
 import bednarhalaj.model.Position;
-import bednarhalaj.model.hierarchy.Employee;
 import bednarhalaj.repository.impl.PositionRepository;
 import bednarhalaj.repository.impl.proxy.SecuredRepository;
 import jakarta.persistence.EntityManager;
@@ -14,7 +13,7 @@ public class DeletePositionCommand extends DeleteCommand<Position> {
 
     @Override
     public Void execute() {
-        EntityManager entityManager = EntityManagerHolder.getEntityManager();
+        EntityManager entityManager = EntityManagerHolder.getInstance();
         PositionRepository positionRepository = new PositionRepository(entityManager);
         SecuredRepository<Position> repository = new SecuredRepository<>(positionRepository);
         try {

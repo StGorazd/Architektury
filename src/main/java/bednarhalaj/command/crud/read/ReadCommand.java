@@ -9,5 +9,5 @@ import java.util.List;
 
 public abstract class ReadCommand<T extends DBEntity> extends CRUDCommand<T, List<T>> {
 
-    protected final EntityManager entityManager = EntityManagerHolder.getEntityManager();
+    protected final EntityManager entityManager = EntityManagerHolder.getInstance();
 }

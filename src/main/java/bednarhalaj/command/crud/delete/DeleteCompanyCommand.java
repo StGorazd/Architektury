@@ -3,7 +3,6 @@ package bednarhalaj.command.crud.delete;
 import bednarhalaj.model.EntityManagerHolder;
 import bednarhalaj.model.hierarchy.Company;
 import bednarhalaj.repository.impl.CompanyRepository;
-import bednarhalaj.repository.impl.EmployeeRepository;
 import bednarhalaj.repository.impl.proxy.SecuredRepository;
 import jakarta.persistence.EntityManager;
 
@@ -14,7 +13,7 @@ public class DeleteCompanyCommand extends DeleteCommand<Company> {
 
     @Override
     public Void execute() {
-        EntityManager entityManager = EntityManagerHolder.getEntityManager();
+        EntityManager entityManager = EntityManagerHolder.getInstance();
         CompanyRepository companyRepository = new CompanyRepository(entityManager);
         SecuredRepository<Company> repository = new SecuredRepository<>(companyRepository);
         try {
