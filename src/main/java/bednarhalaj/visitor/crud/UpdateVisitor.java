@@ -137,8 +137,8 @@ public class UpdateVisitor extends PromptVisitor {
             case 8 -> {
                 while (true) {
                     try {
-                        ReadCommand<Position> positionReadCommand = new ReadAllPositionsCommand();
-                        List<Position> positions = positionReadCommand.execute();
+                        ReadAllCommand<Position> positionReadAllCommand = new ReadAllPositionsCommand();
+                        List<Position> positions = positionReadAllCommand.execute();
                         for (int i = 0; i < positions.size(); i++) {
                             System.out.println((i + 1) + ". " + positions.get(i).toString());
                         }
@@ -170,8 +170,8 @@ public class UpdateVisitor extends PromptVisitor {
                         System.out.println(ERROR);
                     }
                 }
-                ReadCommand<Team> teamReadCommand = new ReadAllTeamsCommand();
-                List<Team> teams = teamReadCommand.execute();
+                ReadAllCommand<Team> teamReadAllCommand = new ReadAllTeamsCommand();
+                List<Team> teams = teamReadAllCommand.execute();
                 for (int i = 0; i < teams.size(); i++) {
                     System.out.println((i + 1) + ". " + teams.get(i).toString());
                 }
@@ -294,8 +294,8 @@ public class UpdateVisitor extends PromptVisitor {
             case 2 -> {
                 while (true) {
                     try {
-                        ReadCommand<Company> companyReadCommand = new ReadAllCompaniesCommand();
-                        List<Company> companies = companyReadCommand.execute();
+                        ReadAllCommand<Company> companyReadAllCommand = new ReadAllCompaniesCommand();
+                        List<Company> companies = companyReadAllCommand.execute();
                         for (int i = 0; i < companies.size(); i++) {
                             System.out.println((i + 1) + ". " + companies.get(i).toString());
                         }
@@ -375,8 +375,8 @@ public class UpdateVisitor extends PromptVisitor {
             case 2 -> {
                 while (true) {
                     try {
-                        ReadCommand<Department> departmentReadCommand = new ReadAllDepartmentsCommand();
-                        List<Department> departments = departmentReadCommand.execute();
+                        ReadAllCommand<Department> departmentReadAllCommand = new ReadAllDepartmentsCommand();
+                        List<Department> departments = departmentReadAllCommand.execute();
                         for (int i = 0; i < departments.size(); i++) {
                             System.out.println((i + 1) + ". " + departments.get(i).toString());
                         }

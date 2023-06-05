@@ -7,7 +7,7 @@ import jakarta.persistence.EntityManager;
 
 import java.util.List;
 
-public abstract class ReadCommand<T extends DBEntity> extends CRUDCommand<T, List<T>> {
+public abstract class ReadAllCommand<T extends DBEntity> extends CRUDCommand<T, List<T>> {
 
     protected final EntityManager entityManager = EntityManagerHolder.getInstance();
 }

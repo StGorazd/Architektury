@@ -29,30 +29,30 @@ public class ChooseEntityToComputeCostState extends State {
         OutputStrategy outputStrategyToReturn = getFirstOutputStrategy();
 
         if (menuItem == EntityMenuItem.EMPLOYEE) {
-            ReadCommand<Employee> readCommand = new ReadAllEmployeesCommand();
-            List<Employee> employeeList = readCommand.execute();
+            ReadAllCommand<Employee> readAllCommand = new ReadAllEmployeesCommand();
+            List<Employee> employeeList = readAllCommand.execute();
             if (!employeeList.isEmpty()) {
                 nextState = ComputeCostState.getInstance();
                 outputStrategyToReturn = new ListHierarchyEntityOutputStrategy(employeeList, true);
             }
         } else if (menuItem == EntityMenuItem.TEAM) {
-            ReadCommand<Team> readCommand = new ReadAllTeamsCommand();
-            List<Team> teamList = readCommand.execute();
+            ReadAllCommand<Team> readAllCommand = new ReadAllTeamsCommand();
+            List<Team> teamList = readAllCommand.execute();
             if (!teamList.isEmpty()) {
                 nextState = ComputeCostState.getInstance();
                 outputStrategyToReturn = new ListHierarchyEntityOutputStrategy(teamList, true);
             }
         } else if (menuItem == EntityMenuItem.DEPARTMENT) {
-            ReadCommand<Department> readCommand = new ReadAllDepartmentsCommand();
-            List<Department> departments = readCommand.execute();
+            ReadAllCommand<Department> readAllCommand = new ReadAllDepartmentsCommand();
+            List<Department> departments = readAllCommand.execute();
             if (!departments.isEmpty()) {
                 nextState = ComputeCostState.getInstance();
                 outputStrategyToReturn = new ListHierarchyEntityOutputStrategy(departments, true);
             }
 
         } else if (menuItem == EntityMenuItem.COMPANY) {
-            ReadCommand<Company> readCommand = new ReadAllCompaniesCommand();
-            List<Company> companies = readCommand.execute();
+            ReadAllCommand<Company> readAllCommand = new ReadAllCompaniesCommand();
+            List<Company> companies = readAllCommand.execute();
             if (!companies.isEmpty()) {
                 nextState = ComputeCostState.getInstance();
                 outputStrategyToReturn = new ListHierarchyEntityOutputStrategy(companies, true);

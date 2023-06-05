@@ -28,13 +28,6 @@ public class DepartmentRepository implements CRUDRepository<Department> {
         }
     }
 
-    @Override
-    public Department read(Class<Department> entityClass, Integer id) {
-        entityManager.getTransaction().begin();
-        Department department = entityManager.find(entityClass, id);
-        entityManager.getTransaction().commit();
-        return department;
-    }
 
     @Override
     public List<Department> readAll() {

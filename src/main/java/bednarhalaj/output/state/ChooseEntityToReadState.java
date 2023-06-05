@@ -34,24 +34,24 @@ public class ChooseEntityToReadState extends State{
         OutputStrategy outputStrategyToReturn = getFirstOutputStrategy();
 
         if (menuItem == EntityMenuItem.EMPLOYEE) {
-            ReadCommand<Employee> readCommand = new ReadAllEmployeesCommand();
-            List<Employee> employeeList = readCommand.execute();
+            ReadAllCommand<Employee> readAllCommand = new ReadAllEmployeesCommand();
+            List<Employee> employeeList = readAllCommand.execute();
             outputStrategyToReturn = new ListDBEntityOutputStrategy(employeeList, false, "");
         } else if (menuItem == EntityMenuItem.TEAM) {
-            ReadCommand<Team> readCommand = new ReadAllTeamsCommand();
-            List<Team> teamList = readCommand.execute();
+            ReadAllCommand<Team> readAllCommand = new ReadAllTeamsCommand();
+            List<Team> teamList = readAllCommand.execute();
             outputStrategyToReturn = new ListDBEntityOutputStrategy(teamList, false,"");
         } else if (menuItem == EntityMenuItem.DEPARTMENT) {
-            ReadCommand<Department> readCommand = new ReadAllDepartmentsCommand();
-            List<Department> departments = readCommand.execute();
+            ReadAllCommand<Department> readAllCommand = new ReadAllDepartmentsCommand();
+            List<Department> departments = readAllCommand.execute();
             outputStrategyToReturn = new ListDBEntityOutputStrategy(departments, false, "");
         } else if (menuItem == EntityMenuItem.COMPANY) {
-            ReadCommand<Company> readCommand = new ReadAllCompaniesCommand();
-            List<Company> companies = readCommand.execute();
+            ReadAllCommand<Company> readAllCommand = new ReadAllCompaniesCommand();
+            List<Company> companies = readAllCommand.execute();
             outputStrategyToReturn = new ListDBEntityOutputStrategy(companies, false, "");
         } else if (menuItem == EntityMenuItem.POSITION) {
-            ReadCommand<Position> readCommand = new ReadAllPositionsCommand();
-            List<Position> positions = readCommand.execute();
+            ReadAllCommand<Position> readAllCommand = new ReadAllPositionsCommand();
+            List<Position> positions = readAllCommand.execute();
             outputStrategyToReturn = new ListDBEntityOutputStrategy(positions, false, "");
         }
 

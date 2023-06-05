@@ -1,6 +1,6 @@
 package bednarhalaj.output.items;
 
-public enum OperationMenuItem implements MenuItem<String> {
+public enum ActionMenuItem implements MenuItem<String> {
 
     CREATE("Create a new entity"),
     UPDATE("Update an entity"),
@@ -13,7 +13,7 @@ public enum OperationMenuItem implements MenuItem<String> {
 
     private String label;
 
-    OperationMenuItem(String label) {
+    ActionMenuItem(String label) {
         this.label = label;
     }
 

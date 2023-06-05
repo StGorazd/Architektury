@@ -2,7 +2,7 @@ package bednarhalaj.output.state;
 
 import bednarhalaj.output.items.EntityMenuItem;
 import bednarhalaj.output.items.MenuItem;
-import bednarhalaj.output.items.OperationMenuItem;
+import bednarhalaj.output.items.ActionMenuItem;
 import bednarhalaj.output.strategy.ListItemsOutputStrategy;
 import bednarhalaj.output.strategy.OutputStrategy;
 
@@ -21,22 +21,22 @@ public class ChooseActionState extends State {
     public OutputStrategy operation(MenuItem<?> menuItem) {
         State nextState = this;
         OutputStrategy outputStrategyToReturn = getFirstOutputStrategy();
-        if (menuItem == OperationMenuItem.CREATE) {
+        if (menuItem == ActionMenuItem.CREATE) {
             nextState = ChooseEntityToCreateState.getInstance();
             outputStrategyToReturn = getNextOutputStrategyWithAllDBEntities();
-        } else if (menuItem == OperationMenuItem.UPDATE) {
+        } else if (menuItem == ActionMenuItem.UPDATE) {
             nextState = ChooseEntityToUpdateState.getInstance();
             outputStrategyToReturn = getNextOutputStrategyWithAllDBEntities();
-        } else if (menuItem == OperationMenuItem.DELETE) {
+        } else if (menuItem == ActionMenuItem.DELETE) {
             nextState = ChooseEntityToDeleteState.getInstance();
             outputStrategyToReturn = getNextOutputStrategyWithAllDBEntities();
-        } else if (menuItem == OperationMenuItem.READ) {
+        } else if (menuItem == ActionMenuItem.READ) {
             nextState = ChooseEntityToReadState.getInstance();
             outputStrategyToReturn = getNextOutputStrategyWithAllDBEntities();
-        } else if (menuItem == OperationMenuItem.COMPUTE_COST) {
+        } else if (menuItem == ActionMenuItem.COMPUTE_COST) {
             nextState = ChooseEntityToComputeCostState.getInstance();
             outputStrategyToReturn = getNextOutputStrategyWithHierarchyEntities();
-        } else if (menuItem == OperationMenuItem.EXIT) {
+        } else if (menuItem == ActionMenuItem.EXIT) {
             System.exit(0);
         }
 
@@ -51,7 +51,7 @@ public class ChooseActionState extends State {
                 EntityMenuItem.DEPARTMENT,
                 EntityMenuItem.COMPANY,
                 EntityMenuItem.POSITION,
-                OperationMenuItem.BACK);
+                ActionMenuItem.BACK);
     }
 
     private OutputStrategy getNextOutputStrategyWithHierarchyEntities() {
@@ -59,6 +59,6 @@ public class ChooseActionState extends State {
                 EntityMenuItem.TEAM,
                 EntityMenuItem.DEPARTMENT,
                 EntityMenuItem.COMPANY,
-                OperationMenuItem.BACK);
+                ActionMenuItem.BACK);
     }
 }
