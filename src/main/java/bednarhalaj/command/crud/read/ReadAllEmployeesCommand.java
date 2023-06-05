@@ -7,7 +7,7 @@ import bednarhalaj.repository.impl.proxy.SecuredRepository;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ReadAllEmployeesCommand extends ReadCommand<Employee> {
+public class ReadAllEmployeesCommand extends ReadAllCommand<Employee> {
     @Override
     public List<Employee> execute() {
         EmployeeRepository employeeRepository = new EmployeeRepository(entityManager);

@@ -28,13 +28,6 @@ public class PositionRepository implements CRUDRepository<Position> {
         }
     }
 
-    @Override
-    public Position read(Class<Position> entityClass, Integer id) {
-        entityManager.getTransaction().begin();
-        Position position = entityManager.find(entityClass, id);
-        entityManager.getTransaction().commit();
-        return position;
-    }
 
     @Override
     public List<Position> readAll() {

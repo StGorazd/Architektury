@@ -27,13 +27,6 @@ public class SecuredRepository<T extends DBEntity> implements CRUDRepository<T> 
 
     }
 
-    @Override
-    public T read(Class<T> entityClass, Integer id) throws IllegalAccessException {
-        if (user.canRead()) {
-            return realCRUDRepository.read(entityClass, id);
-        }
-        throw new IllegalAccessException();
-    }
 
     @Override
     public List<T> readAll() throws IllegalAccessException {

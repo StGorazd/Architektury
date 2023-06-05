@@ -7,7 +7,7 @@ import bednarhalaj.repository.impl.proxy.SecuredRepository;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ReadAllCompaniesCommand extends ReadCommand<Company> {
+public class ReadAllCompaniesCommand extends ReadAllCommand<Company> {
     @Override
     public List<Company> execute() {
         CompanyRepository companyRepository = new CompanyRepository(entityManager);

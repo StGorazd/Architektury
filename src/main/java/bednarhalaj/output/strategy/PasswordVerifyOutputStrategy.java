@@ -1,9 +1,6 @@
 package bednarhalaj.output.strategy;
 
-import bednarhalaj.model.DBEntity;
-import bednarhalaj.model.hierarchy.HierarchyEntity;
 import bednarhalaj.model.users.db.DBUser;
-import bednarhalaj.output.items.HierarchyEntityMenuItem;
 import bednarhalaj.output.items.LoginMenuItem;
 
 

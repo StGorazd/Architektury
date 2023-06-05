@@ -9,7 +9,6 @@ import lombok.*;
 @Setter
 @NoArgsConstructor(force = true)
 @EqualsAndHashCode(callSuper = true)
-@ToString
 public class Department extends CompositeHierarchyEntity {
     @NonNull
     @Column(name = "name")

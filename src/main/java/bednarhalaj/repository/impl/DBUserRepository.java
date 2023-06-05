@@ -28,13 +28,6 @@ public class DBUserRepository implements CRUDRepository<DBUser> {
         }
     }
 
-    @Override
-    public DBUser read(Class<DBUser> entityClass, Integer id) {
-        entityManager.getTransaction().begin();
-        DBUser user = entityManager.find(entityClass, id);
-        entityManager.getTransaction().commit();
-        return user;
-    }
 
     @Override
     public List<DBUser> readAll() {

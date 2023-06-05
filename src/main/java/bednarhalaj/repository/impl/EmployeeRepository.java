@@ -29,18 +29,13 @@ public class EmployeeRepository implements CRUDRepository<Employee> {
         }
     }
 
-    @Override
-    public Employee read(Class<Employee> entityClass, Integer id) {
-        entityManager.getTransaction().begin();
-        Employee employee = entityManager.find(entityClass, id);
-        entityManager.getTransaction().commit();
-        return employee;
-    }
 
     @Override
     public List<Employee> readAll() {
         entityManager.getTransaction().begin();
-        List<Employee> employees = entityManager.createQuery("SELECT e FROM Employee e" , Employee.class).getResultList();
+        List<Employee> employees = entityManager.createQuery(
+                "SELECT e FROM Employee e" , Employee.class)
+                .getResultList();
         entityManager.getTransaction().commit();
         return employees;
     }

@@ -29,14 +29,6 @@ public class TeamRepository implements CRUDRepository<Team> {
     }
 
     @Override
-    public Team read(Class<Team> entityClass, Integer id) {
-        entityManager.getTransaction().begin();
-        Team team = entityManager.find(entityClass, id);
-        entityManager.getTransaction().commit();
-        return team;
-    }
-
-    @Override
     public List<Team> readAll() {
         entityManager.getTransaction().begin();
         List<Team> teams = entityManager.createQuery("SELECT t FROM Team t", Team.class).getResultList();

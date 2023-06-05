@@ -29,14 +29,6 @@ public class CompanyRepository implements CRUDRepository<Company> {
     }
 
     @Override
-    public Company read(Class<Company> entityClass, Integer id) {
-        entityManager.getTransaction().begin();
-        Company company = entityManager.find(entityClass, id);
-        entityManager.getTransaction().commit();
-        return company;
-    }
-
-    @Override
     public List<Company> readAll() {
         entityManager.getTransaction().begin();
         List<Company> companies = entityManager.createQuery("SELECT c FROM Company c", Company.class).getResultList();

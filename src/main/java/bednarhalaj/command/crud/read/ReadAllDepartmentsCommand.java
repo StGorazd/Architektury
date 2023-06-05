@@ -7,7 +7,7 @@ import bednarhalaj.repository.impl.proxy.SecuredRepository;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ReadAllDepartmentsCommand extends ReadCommand<Department> {
+public class ReadAllDepartmentsCommand extends ReadAllCommand<Department> {
     @Override
     public List<Department> execute() {
         DepartmentRepository departmentRepository = new DepartmentRepository(entityManager);

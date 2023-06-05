@@ -10,7 +10,6 @@ import bednarhalaj.output.strategy.OutputStrategy;
 
 public class OutputMediator {
     private State actualState;
-
     private static User user;
 
     public OutputMediator() {
