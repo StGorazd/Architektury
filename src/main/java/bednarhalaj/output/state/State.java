@@ -18,7 +18,7 @@ public abstract class State {
 
     protected OutputStrategy outputStrategyToReturn;
 
-    public OutputStrategy operation(MenuItem<?> menuItem) {
+    public OutputStrategy handle(MenuItem<?> menuItem) {
         setDefaults(menuItem);
         processMenuItem(menuItem);
         setUpManager();
