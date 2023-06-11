@@ -19,18 +19,18 @@ public class Manager {
 
 
     public void process(MenuItem<?> menuItem) {
-        OutputStrategy nextStrategy = actualState.operation(menuItem);
-        register(nextStrategy);
+        OutputStrategy nextStrategy = actualState.handle(menuItem);
+        executeStrategy(nextStrategy);
     }
 
-    public void register(OutputStrategy strategy) {
+    public void executeStrategy(OutputStrategy strategy) {
         strategy.setManager(this);
         strategy.execute();
     }
 
     public void start() {
         OutputStrategy strategy = actualState.getLoginOutputStrategy();
-        register(strategy);
+        executeStrategy(strategy);
     }
 
     public void setUser(DBUser dbUser) {
