@@ -35,6 +35,6 @@ public class ListItemsOutputStrategy extends OutputStrategy {
                 System.out.println(ERROR);
             }
         }
-        outputMediator.notify(item);
+        manager.process(item);
     }
 }

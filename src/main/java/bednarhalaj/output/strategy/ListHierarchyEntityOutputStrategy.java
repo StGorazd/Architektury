@@ -42,7 +42,7 @@ public class ListHierarchyEntityOutputStrategy extends OutputStrategy {
                 }
             }
 
-            outputMediator.notify(hierarchyEntityMenuItem);
+            manager.process(hierarchyEntityMenuItem);
         }
     }
 }

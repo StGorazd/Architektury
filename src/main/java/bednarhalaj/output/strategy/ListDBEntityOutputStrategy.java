@@ -1,7 +1,6 @@
 package bednarhalaj.output.strategy;
 
 import bednarhalaj.model.DBEntity;
-import bednarhalaj.model.hierarchy.HierarchyEntity;
 import bednarhalaj.output.items.DBEntityMenuItem;
 
 import java.util.List;
@@ -47,6 +46,6 @@ public class ListDBEntityOutputStrategy extends OutputStrategy {
             }
         }
 
-        outputMediator.notify(dbEntityMenuItem);
+        manager.process(dbEntityMenuItem);
     }
 }

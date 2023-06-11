@@ -18,9 +18,7 @@ public class ChooseActionState extends State {
     }
 
     @Override
-    public OutputStrategy operation(MenuItem<?> menuItem) {
-        State nextState = this;
-        OutputStrategy outputStrategyToReturn = getFirstOutputStrategy();
+    protected void processMenuItem(MenuItem<?> menuItem) {
         if (menuItem == ActionMenuItem.CREATE) {
             nextState = ChooseEntityToCreateState.getInstance();
             outputStrategyToReturn = getNextOutputStrategyWithAllDBEntities();
@@ -39,10 +37,6 @@ public class ChooseActionState extends State {
         } else if (menuItem == ActionMenuItem.EXIT) {
             System.exit(0);
         }
-
-        nextState.setOutputMediator(outputMediator);
-        outputMediator.setActualState(nextState);
-        return outputStrategyToReturn;
     }
 
     private OutputStrategy getNextOutputStrategyWithAllDBEntities() {

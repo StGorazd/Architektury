@@ -8,23 +8,23 @@ import bednarhalaj.output.state.LoginState;
 import bednarhalaj.output.state.State;
 import bednarhalaj.output.strategy.OutputStrategy;
 
-public class OutputMediator {
+public class Manager {
     private State actualState;
     private static User user;
 
-    public OutputMediator() {
+    public Manager() {
         actualState = LoginState.getInstance();
-        actualState.setOutputMediator(this);
+        actualState.setManager(this);
     }
 
 
-    public void notify(MenuItem<?> menuItem) {
+    public void process(MenuItem<?> menuItem) {
         OutputStrategy nextStrategy = actualState.operation(menuItem);
         register(nextStrategy);
     }
 
     public void register(OutputStrategy strategy) {
-        strategy.setMediator(this);
+        strategy.setManager(this);
         strategy.execute();
     }
 

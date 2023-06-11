@@ -2,7 +2,6 @@ package bednarhalaj.output.state;
 
 import bednarhalaj.model.users.db.DBUser;
 import bednarhalaj.output.items.MenuItem;
-import bednarhalaj.output.strategy.OutputStrategy;
 import bednarhalaj.output.strategy.PasswordVerifyOutputStrategy;
 
 
@@ -19,16 +18,13 @@ public class LoginState extends State {
     }
 
     @Override
-    public OutputStrategy operation(MenuItem<?> menuItem) {
+    protected void processMenuItem(MenuItem<?> menuItem) {
 
-        State nextState = PasswordVerifyState.getInstance();
+    }
 
-        OutputStrategy outputStrategyToReturn = new PasswordVerifyOutputStrategy((DBUser) menuItem.getLabel());
-
-        nextState.setOutputMediator(outputMediator);
-        outputMediator.setActualState(nextState);
-
-        return outputStrategyToReturn;
-
+    @Override
+    protected  void setDefaults(MenuItem<?> menuItem){
+        nextState = PasswordVerifyState.getInstance();
+        outputStrategyToReturn = new PasswordVerifyOutputStrategy((DBUser) menuItem.getLabel());
     }
 }

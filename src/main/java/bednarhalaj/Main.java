@@ -1,11 +1,7 @@
 package bednarhalaj;
 
 
-import bednarhalaj.model.EntityManagerHolder;
-import bednarhalaj.model.users.db.DBUser;
-import bednarhalaj.model.users.db.Role;
-import bednarhalaj.output.OutputMediator;
-import bednarhalaj.repository.impl.DBUserRepository;
+import bednarhalaj.output.Manager;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -33,7 +29,7 @@ public class Main {
         dbUserRepository.create(dbUser2);*/
 
         Logger.getLogger("org.hibernate").setLevel(Level.SEVERE);
-        OutputMediator mediator = new OutputMediator();
+        Manager mediator = new Manager();
         mediator.start();
     }
 }

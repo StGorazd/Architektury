@@ -2,7 +2,7 @@ package bednarhalaj.repository.impl.proxy;
 
 import bednarhalaj.model.DBEntity;
 import bednarhalaj.model.users.User;
-import bednarhalaj.output.OutputMediator;
+import bednarhalaj.output.Manager;
 import bednarhalaj.repository.CRUDRepository;
 
 import java.util.List;
@@ -11,7 +11,7 @@ public class SecuredRepository<T extends DBEntity> implements CRUDRepository<T> 
 
     private final CRUDRepository<T> realCRUDRepository;
 
-    private final User user = OutputMediator.getUser();
+    private final User user = Manager.getUser();
 
     public SecuredRepository(CRUDRepository<T> realCRUDRepository) {
         this.realCRUDRepository = realCRUDRepository;

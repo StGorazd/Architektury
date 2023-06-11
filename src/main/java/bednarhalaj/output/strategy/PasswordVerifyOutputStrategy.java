@@ -29,7 +29,7 @@ public class PasswordVerifyOutputStrategy extends OutputStrategy {
                 System.out.println("Password is incorrect!");
             }
             System.out.println();
-            outputMediator.notify(loginMenuItem);
+            manager.process(loginMenuItem);
         } catch (Exception e) {
             System.out.println(ERROR);
         }

@@ -12,6 +12,6 @@ public class LineOutputStrategy extends OutputStrategy {
     public void execute() {
         System.out.println(line);
         System.out.println();
-        outputMediator.notify(null);
+        manager.process(null);
     }
 }

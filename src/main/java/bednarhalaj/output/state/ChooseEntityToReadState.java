@@ -9,7 +9,6 @@ import bednarhalaj.model.hierarchy.Team;
 import bednarhalaj.output.items.EntityMenuItem;
 import bednarhalaj.output.items.MenuItem;
 import bednarhalaj.output.strategy.ListDBEntityOutputStrategy;
-import bednarhalaj.output.strategy.OutputStrategy;
 
 import java.util.List;
 
@@ -29,10 +28,7 @@ public class ChooseEntityToReadState extends State{
     }
 
     @Override
-    public OutputStrategy operation(MenuItem<?> menuItem) {
-        State nextState = ChooseActionState.getInstance();
-        OutputStrategy outputStrategyToReturn = getFirstOutputStrategy();
-
+    protected void processMenuItem(MenuItem<?> menuItem) {
         if (menuItem == EntityMenuItem.EMPLOYEE) {
             ReadAllCommand<Employee> readAllCommand = new ReadAllEmployeesCommand();
             List<Employee> employeeList = readAllCommand.execute();
@@ -54,9 +50,5 @@ public class ChooseEntityToReadState extends State{
             List<Position> positions = readAllCommand.execute();
             outputStrategyToReturn = new ListDBEntityOutputStrategy(positions, false, "");
         }
-
-        nextState.setOutputMediator(outputMediator);
-        outputMediator.setActualState(nextState);
-        return outputStrategyToReturn;
     }
 }

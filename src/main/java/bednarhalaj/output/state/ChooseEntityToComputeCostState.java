@@ -8,7 +8,6 @@ import bednarhalaj.model.hierarchy.Team;
 import bednarhalaj.output.items.EntityMenuItem;
 import bednarhalaj.output.items.MenuItem;
 import bednarhalaj.output.strategy.ListHierarchyEntityOutputStrategy;
-import bednarhalaj.output.strategy.OutputStrategy;
 
 import java.util.List;
 
@@ -22,12 +21,8 @@ public class ChooseEntityToComputeCostState extends State {
         }
         return chooseEntityToComputeCostStateInstance;
     }
-
     @Override
-    public OutputStrategy operation(MenuItem<?> menuItem) {
-        State nextState = ChooseActionState.getInstance();
-        OutputStrategy outputStrategyToReturn = getFirstOutputStrategy();
-
+    protected void processMenuItem(MenuItem<?> menuItem) {
         if (menuItem == EntityMenuItem.EMPLOYEE) {
             ReadAllCommand<Employee> readAllCommand = new ReadAllEmployeesCommand();
             List<Employee> employeeList = readAllCommand.execute();
@@ -58,9 +53,5 @@ public class ChooseEntityToComputeCostState extends State {
                 outputStrategyToReturn = new ListHierarchyEntityOutputStrategy(companies, true);
             }
         }
-
-        nextState.setOutputMediator(outputMediator);
-        outputMediator.setActualState(nextState);
-        return outputStrategyToReturn;
     }
 }
