@@ -3,7 +3,6 @@ package bednarhalaj.output.state;
 import bednarhalaj.model.users.db.DBUser;
 import bednarhalaj.output.items.LoginMenuItem;
 import bednarhalaj.output.items.MenuItem;
-import bednarhalaj.output.strategy.OutputStrategy;
 
 public class PasswordVerifyState extends State {
     private static PasswordVerifyState passwordVerifyStateInstance = null;
@@ -17,20 +16,12 @@ public class PasswordVerifyState extends State {
     }
 
     @Override
-    public OutputStrategy operation(MenuItem<?> menuItem) {
-        State nextState = ChooseActionState.getInstance();
-        OutputStrategy outputStrategyToReturn = getFirstOutputStrategy();
-
+    protected void processMenuItem(MenuItem<?> menuItem) {
         if (menuItem == LoginMenuItem.PASSWORD_MISMATCH) {
             nextState = LoginState.getInstance();
             outputStrategyToReturn = getLoginOutputStrategy();
         } else {
-            outputMediator.setUser((DBUser) menuItem.getLabel());
+            manager.setUser((DBUser) menuItem.getLabel());
         }
-
-        nextState.setOutputMediator(outputMediator);
-        outputMediator.setActualState(nextState);
-        return outputStrategyToReturn;
-
     }
 }

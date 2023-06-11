@@ -25,9 +25,7 @@ public class ChooseEntityToCreateState extends State {
         return chooseEntityToCreateStateInstance;
     }
     @Override
-    public OutputStrategy operation(MenuItem<?> menuItem) {
-        State nextState = ChooseActionState.getInstance();
-        OutputStrategy outputStrategyToReturn = getFirstOutputStrategy();
+    protected void processMenuItem(MenuItem<?> menuItem) {
         try {
             if (menuItem == EntityMenuItem.EMPLOYEE) {
                 CreateCommand<Employee> createCommand = new CreateEmployeeCommand(new Employee());
@@ -49,9 +47,5 @@ public class ChooseEntityToCreateState extends State {
         } catch (Exception e) {
             System.out.println("Something went wrong when creating an entry");
         }
-
-        nextState.setOutputMediator(outputMediator);
-        outputMediator.setActualState(nextState);
-        return outputStrategyToReturn;
     }
 }

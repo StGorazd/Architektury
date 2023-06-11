@@ -1,16 +1,16 @@
 package bednarhalaj.output.strategy;
 
-import bednarhalaj.output.OutputMediator;
+import bednarhalaj.output.Manager;
 
 import java.util.Scanner;
 
 public abstract class OutputStrategy {
     protected final Scanner scanner = new Scanner(System.in);
 
-    protected OutputMediator outputMediator;
+    protected Manager manager;
 
-    public void setMediator(OutputMediator outputMediator) {
-        this.outputMediator = outputMediator;
+    public void setManager(Manager manager) {
+        this.manager = manager;
     }
 
     abstract public void execute();

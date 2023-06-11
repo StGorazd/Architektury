@@ -10,7 +10,6 @@ import bednarhalaj.model.hierarchy.Employee;
 import bednarhalaj.model.hierarchy.Team;
 import bednarhalaj.output.items.DBEntityMenuItem;
 import bednarhalaj.output.items.MenuItem;
-import bednarhalaj.output.strategy.OutputStrategy;
 
 public class DeleteState extends State {
 
@@ -29,9 +28,7 @@ public class DeleteState extends State {
     }
 
     @Override
-    public OutputStrategy operation(MenuItem<?> menuItem) {
-        State nextState = ChooseActionState.getInstance();
-        OutputStrategy outputStrategyToReturn = getFirstOutputStrategy();
+    protected void processMenuItem(MenuItem<?> menuItem) {
         try {
             if (menuItem == DBEntityMenuItem.ITEM) {
                 DBEntityMenuItem localMenuItem = (DBEntityMenuItem) menuItem;
@@ -56,8 +53,5 @@ public class DeleteState extends State {
         } catch (Exception e) {
             System.out.println("Something went wrong when deleting an entry");
         }
-        nextState.setOutputMediator(outputMediator);
-        outputMediator.setActualState(nextState);
-        return outputStrategyToReturn;
     }
 }

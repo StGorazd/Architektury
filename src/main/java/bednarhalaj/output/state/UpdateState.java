@@ -29,9 +29,7 @@ public class UpdateState extends State {
     }
 
     @Override
-    public OutputStrategy operation(MenuItem<?> menuItem) {
-        State nextState = ChooseActionState.getInstance();
-        OutputStrategy outputStrategyToReturn = getFirstOutputStrategy();
+    protected void processMenuItem(MenuItem<?> menuItem) {
         try {
             if (menuItem == DBEntityMenuItem.ITEM) {
                 DBEntityMenuItem localMenuItem = (DBEntityMenuItem) menuItem;
@@ -56,8 +54,5 @@ public class UpdateState extends State {
         } catch (Exception e) {
             System.out.println("Something went wrong when updating an entry");
         }
-        nextState.setOutputMediator(outputMediator);
-        outputMediator.setActualState(nextState);
-        return outputStrategyToReturn;
     }
 }
